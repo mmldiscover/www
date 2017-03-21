@@ -1,10 +1,90 @@
 <?php
 namespace app\index\controller;
 
-class Index
+use think\Controller;
+use think\Session;
+
+class Index extends Controller
 {
+    //主页
     public function index()
     {
-        return '<style type="text/css">*{ padding: 0; margin: 0; } .think_default_text{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p> ThinkPHP V5<br/><span style="font-size:30px">十年磨一剑 - 为API开发设计的高性能框架</span></p><span style="font-size:22px;">[ V5.0 版本由 <a href="http://www.qiniu.com" target="qiniu">七牛云</a> 独家赞助发布 ]</span></div><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script><script type="text/javascript" src="http://ad.topthink.com/Public/static/client.js"></script><thinkad id="ad_bd568ce7058a1091"></thinkad>';
+        if(Session::has('user')){
+            return view('Index/index');
+        }
+        else{
+        	return view('Index/login');
+        }
+    }
+
+    //登录
+    public function login(){
+        if(input('post.')){
+            $account = input('post.account');
+            $password = input('post.password');
+            //验证数据合法性
+            if(!$account){
+                return __msg(0,'account can not be null');
+            }
+            if(!$password){
+                return __msg(0,'password can not be null');
+            }
+            $data = array(
+                'account'=>$account,
+            );
+            //验证账号是否存在
+            $user = User::getUser($data);
+            if($user){
+                //验证密码正确性
+                if($user->password == $password){
+                    Session::set('user',$user);
+                    return __msg(1,'Login success');
+                }
+                return __msg(0,'Password is not right');
+            }
+            else{
+                return __msg(0,'The Account is not existed');
+            }
+        }
+        return view('Index/login');
+    }
+
+    //注册
+    public function register(){
+        if(input('post.')){
+            $account = input('post.account');
+            $password = input('post.password');
+            $password2=input('post.password1');
+            //验证数据合法性
+            if(!$account){
+                return __msg(0,'account can not be null');
+            }
+            if(!$password){
+                return __msg(0,'password can not be null');
+            }
+            if($password != $password2){
+                return __msg(0,'two password are different');
+            }
+            $data = array(
+                'account'=>$account,
+            );
+            //验证账号是否存在
+            $is_existed = User::getUser($data);
+            if($is_existed){
+                return __msg(0,'The account is existed');
+            }
+            else{
+                $data['password']=$password;
+                $res = User::addUser($data);
+                if($res){
+                    return __msg(1,'register success');
+                }
+                else{
+                    return __msg(0,'register failed');
+                }
+            }
+        }
+
+        return view('Index/register');
     }
 }
