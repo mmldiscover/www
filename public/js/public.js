@@ -2,6 +2,7 @@ var SCOPE={
 	'login':"/index.php/index/index/login",
 	'register':"/index.php/index/index/register",
 	'login_success':"/",
+	'user_edit' :"/index.php/index/user/update",
 }
 function login(){
 	var data = $("#sign-in").serializeArray();
@@ -38,3 +39,16 @@ function register(){
 		    }
 	    },"JSON");     
 }
+
+function save(){
+		var data = $("#user-info").serializeArray();
+	    var postData = {};
+	    $(data).each(function(i){
+	    postData[this.name] = this.value;
+	    });
+	    var url = SCOPE.user_edit;
+	    $.post(url,postData,function(result){
+		    alert(result.info);
+	    },"JSON");        
+
+    }

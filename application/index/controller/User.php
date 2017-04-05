@@ -2,11 +2,17 @@
 namespace app\index\controller;
 
 use think\Controller;
+use think\Session;
 
 class User extends Controller
 {
     public function index()
     {
+        if(Session::has('user')){
+            $user = Session::get('user');
+            $this->assign('user',$user);
+            return view();
+        }
 
     }
 
@@ -39,8 +45,40 @@ class User extends Controller
         return 0;
     }
 
-    //注册
-    public static function register(){
-
+    //编辑 用户资料
+    public function edit(){
+        if(Session::has('user')){
+            $user = Session::get('user');
+            $this->assign('user',$user);
+            return view();
+        }
     }
+    public function update(){
+        if(Session::has('user')){
+            $user = Session::get('user');
+            if(input('post.')){
+                if(input('post.user_id') == $user->user_id){
+                    $id = input('post.user_id');
+                    $data = array(
+                        'realname' => input('post.realname'),
+                        'email' => input('post.email'),
+                        'telephone' => input('post.telephone'),
+                        'sex' => input('post.sex'),
+                        'birthday'=>input('post.birthday'),
+                    );
+                    $res = model('user') ->where('user_id='.$id)->update($data);
+                    if($res){
+                        $u = User::getUser(array('user_id'=>$user['user_id']));
+                        Session::set('user',$u);
+                        return __msg(1,'更新成功!');
+                    }
+                    else{
+                        return __msg(0,'更新失败!');
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
 }

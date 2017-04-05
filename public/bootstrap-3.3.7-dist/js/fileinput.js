@@ -351,7 +351,7 @@
             object: tObject,
             other: tOther
         },
-        defaultPreviewTypes = ['image', 'html', 'text', 'video', 'audio', 'flash', 'object'],
+        defaultPreviewTypes = ['image', 'html', 'text', 'video', 'audio', 'flash'],
         defaultPreviewSettings = {
             image: {width: "auto", height: "160px"},
             html: {width: "213px", height: "160px"},
@@ -659,7 +659,10 @@
                 template = pct < 100 ? self.progressTemplate : self.progressCompleteTemplate;
             self.$progress.html(template.repl('{percent}', pct));
         },
+//--------------------------        //上传
         upload: function () {
+        	
+        	
             var self = this, totLen = self.getFileStack().length, params = {},
                 i, outData, len, hasExtraData = !$.isEmptyObject(self.getExtraData());
             if (totLen < self.minFileCount && self.minFileCount > 0) {
@@ -856,6 +859,7 @@
             return out;
         },
         renderFileActions: function (showUpload, showDelete, disabled, url, key, index) {
+        	
             if (!showUpload && !showDelete) {
                 return '';
             }
@@ -924,6 +928,7 @@
                     dataType: 'json',
                     data: $.extend({key: vKey}, extraData),
                     beforeSend: function (jqXHR) {
+                    	
                         addCss($frame, 'file-uploading');
                         addCss($el, 'disabled');
                         self.raise('filepredelete', [vKey, jqXHR, extraData]);
@@ -1103,6 +1108,7 @@
             self.initDragDrop();
         },
         enable: function () {
+        	
             var self = this;
             self.isDisabled = false;
             self.raise('fileenabled');
@@ -1142,6 +1148,7 @@
             return xhrobj;
         },
         ajaxSubmit: function (fnBefore, fnSuccess, fnComplete, fnError) {
+        	
             var self = this, settings;
             self.uploadExtra();
             settings = $.extend({
@@ -1418,6 +1425,7 @@
                 if (!isEmpty(files[key])) {
                     self.formdata.append(self.uploadFileAttr, data);
                 }
+                
             });
             self.ajaxSubmit(fnBefore, fnSuccess, fnComplete, fnError);
         },

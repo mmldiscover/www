@@ -1,0 +1,86 @@
+{include file="Index/head"}
+
+</head>
+<body>
+<div style="position: fixed;border: 0px;width: 100%;height: 100%;background: url(../Image/back.jpg);background-size:100% 100%;"></div>
+<div style="position: fixed;border: 0px;width: 100%;height: 100%;background: rgba(0,0,0,0.4);background-size:100% 100%;"></div>
+
+ 
+
+{include file="Index/nav"}
+<div class="container container-fluid">
+    {include file="Index/leftbar"}
+    <div class="col-lg-8">
+    	<div class="row">
+    		<div class="container">
+    			<button class="btn btn-primary"><span class="glyphicon glyphicon-new-window"></span>  新建文件夹</button>
+    			<button class="btn btn-warning" onclick="mytab()"><span class="glyphicon glyphicon-upload"></span> 上传文件</button>
+    			<button class="btn btn-success" onclick="mytab()"><span class="glyphicon glyphicon-home"></span>  返回网盘 </button>
+    		</div>
+    	</div>
+    	<br />
+    	<div class="row">
+    		<ol class="breadcrumb" style="background: rgba(0,0,0,0.5);">
+			  <li><a href="/index.php/index/rsmanager/index">我的网盘</a></li>
+			  {foreach $path as $p}
+			  <li><a href="/index.php/index/rsmanager/index/folder/{$p.folder_id}">{$p.folder_name}</a></li>
+			  {/foreach}
+			</ol>
+    	</div>
+    	<div class="" style="height: 400px;overflow-y: scroll;overflow-x: hidden;">
+		<div class="form-group myform">
+            <input id="file-5" name="file" class="file" type="file" multiple data-preview-file-type="any" data-upload-url="/index.php/index/Resource/file_upload/folder/{$root}" data-preview-file-icon="">
+        </div>
+        <table class="table mytable">
+        	<tr>
+        		<th><input type="checkbox" /> </th>
+        		<th>文件名</th>
+        		<th>大小 </th>
+        		<th>修改时间</th>
+        		<th>操作</th>
+        	</tr>
+        	{foreach $folders as $folder}
+        	<tr>
+        		<td><input type="checkbox" /> </td>
+        		<td><a href="/index.php/index/rsmanager/index/folder/{$folder.folder_id}"><span class="glyphicon glyphicon-folder-open">&nbsp;</span> {$folder.folder_name}</a></td>
+        		<td>--</td>
+        		<td>--</td>
+        		<td>
+        			<a href="/index.php/index/folder/delete?id={$folder.folder_id}" title="删除"><span class="glyphicon glyphicon-trash"></span></a>
+        			<a href="/index.php/index/folder/share?id={$folder.folder_id}" title="分享"><span class="glyphicon glyphicon-share"></span></a>
+        		</td>
+        	</tr>
+        	{/foreach}
+        
+        	{volist name="resource" id="res"}
+        		<tr>
+	        		<td><input type="checkbox" /> </td>
+	        		<td><span class="glyphicon glyphicon-file">&nbsp;</span> {$res.resource_name}</a></td>
+	        		<td>{$res.size|transformSize}</td>
+	        		<td>{$res.uploadtime |transformTime}</td>
+	        		<td>
+	        			<a href="/index.php/index/resource/download?file={$res.rf_id}" title="下载"><span class="glyphicon glyphicon-download"></span></a>
+	        		
+	        			<a href="/index.php/index/resource/share?id={$res.resource_id}" title="分享"><span class="glyphicon glyphicon-share"></span></a>
+	        		</td>
+        		</tr>
+        	{/volist}
+        </table>
+        </div>
+        
+    </div>
+</div>
+
+
+</body>
+
+{include file="Index/footer"}
+
+<script type="text/javascript">
+	function mytab(){
+		$('.myform').fadeToggle(500);
+		$('.mytable').fadeToggle(500);
+	}
+</script>
+
+</html>

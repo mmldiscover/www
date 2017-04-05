@@ -1,0 +1,86 @@
+{include file="Index/head"}
+
+</head>
+<body>
+<div style="position: fixed;border: 0px;width: 100%;height: 100%;background: url(../Image/back.jpg);background-size:100% 100%;"></div>
+<div style="position: fixed;border: 0px;width: 100%;height: 100%;background: rgba(0,0,0,0.4);background-size:100% 100%;"></div>
+
+ 
+
+{include file="Index/nav"}
+<div class="container container-fluid">
+    {include file="Index/leftbar"}
+    <div class="col-lg-7">
+    	<div class="row">
+    		<div class="container">
+    			<button class="btn btn-primary" id="transform"><a href="/index.php/index/user/edit"><span class="glyphicon glyphicon-new-window"></span> 完善信息</a></button>
+    		</div>
+    	</div>
+    	<br />
+    	
+		<div class="panel panel-primary" id="user-info-scan" style="position: absolute;">
+			<div class="panel-heading">我的个人信息</div>
+			<div class="panel-body">
+				<form method="post">
+					<div class="input-group">
+						<span class="input-group-addon">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+						<input type="text" class="form-control" placeholder="Account" name="account" disabled="disabled" value="{$user['account']}">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">真实姓名</span>
+						<input type="text" class="form-control" placeholder="realname" name="realname" disabled="disabled" value="{$user['realname']}" >
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</span>
+						<input type="date" class="form-control" placeholder="Realname" name="birthday" disabled="disabled" value="{$user['birthday']}">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</span>
+						<input type="text" class="form-control" placeholder="email" name="email" disabled="disabled" value="{$user['email']}">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话</span>
+						<input type="text" class="form-control" placeholder="telephone" name="telephone" disabled="disabled" value="{$user['telephone']}">
+					</div>
+
+					<br>
+
+				</form>
+
+			</div>
+		</div>
+
+        
+    </div>
+</div>
+
+
+</body>
+
+{include file="Index/footer"}
+
+<script type="text/javascript">
+	var flag = false;
+	function mytab(){
+		var l1 ="<span class=\"glyphicon glyphicon-edit\"></span>  完善信息 ";
+		var l2 ="<span class=\"glyphicon glyphicon-refresh\"></span>  保存信息 ";
+		$('#user-info-edit').fadeToggle(500);
+		$('#user-info-scan').fadeToggle(500);
+
+		if(flag==false){
+			$("#transform").html(l2);
+			flag=true;
+		}
+		else{
+			$("#transform").html(l1);
+			flag=false;
+		}
+		
+	}
+</script>
+
+</html>
