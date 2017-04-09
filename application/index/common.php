@@ -51,3 +51,29 @@ function getRouteByResId($id){
     $res=model('Resource')->where('resource_id='.$id)->find();
     return $res->route;
 }
+function getMenuName($id){
+    if($id == 0){
+        return "--";
+    }
+    $res = model('Menu')->where('menu_id',$id)->find();
+    return $res->menu_name;
+}
+function getRoleName($id){
+    $res = model('Role')->where('role_id',$id)->find();
+    return $res->role_name;
+}
+function getStatus($status){
+    if($status==1){
+        return "开启";
+    }
+    if($status==0){
+        return "关闭";
+    }
+    if($status==-1){
+        return "移除";
+    }
+}
+function getProvince($id){
+    $res = model('Province')->where('province_id',$id)->find();
+    return $res['province_name'];
+}

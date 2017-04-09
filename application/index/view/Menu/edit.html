@@ -1,0 +1,153 @@
+{include file="Index/head"}
+
+</head>
+
+<body>
+	<!--<div style="position: fixed;border: 0px;width: 100%;height: 100%;background: url(../Image/back4.jpg);background-size:100% 100%;"></div>-->
+
+	<div id="wrapper">
+		{include file="Index/nav"}
+		<!--	MENU-BEGIN-->
+		{include file="Index/menu"}
+		<!--	MENU-END-->
+
+		<div id="page-wrapper">
+			<div class="header">
+				<h1 class="page-header">
+                           	 菜单管理<small> / 编辑</small>
+             	</h1>
+				<ol class="breadcrumb">
+					<li>
+						<a href="javascrip:void()">Home</a>
+					</li>
+					<li>
+						<a href="/index.php/index/menu">Menu</a>
+					</li>
+					<li>
+						<a class="active">Edit</a>
+					</li>
+
+				</ol>
+
+			</div>
+			<div id="page-inner">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Advanced Tables -->
+						<div class="card">
+							<!--<div class="card-action">
+                             	添加菜单
+                        	</div>-->
+							<div class="card-content">
+								<form method="post" id="menu">
+									<div class="col-lg-6">
+										<div class="input-field">
+											<input name="menu_id" class="hidden" value="{$m.menu_id}"/>
+									        <input type="text" class="validate" name="menu_name" value="{$m.menu_name}">
+									        <label for="last_name">Menu Name</label>
+									    </div>
+										<div class="input-field">
+									          <input type="text" class="validate" name="controller" value="{$m.controller}">
+									          <label for="last_name">Controller</label>
+									    </div>
+										<div class="input-field">
+									          <input type="text" class="validate" name="function" value="{$m.function}">
+									          <label for="last_name">Function</label>
+									    </div>
+									    <div class="input-field">
+									          <input type="text" class="validate" name="icon" value="{$m.icon}">
+									          <label for="last_name">Icon</label>
+									    </div>
+									</div>
+									<div class="col-lg-6">
+										<br>
+										<div class="input-group">
+											<span class="input-group-addon">&nbsp;&nbsp;权&nbsp;&nbsp;&nbsp;&nbsp;限&nbsp;&nbsp;</span>
+											<select name="role_id" class="form-control">
+												{foreach $roles as $role}
+												<option value="{$role.role_id}"
+										  			{if condition="$m['role_id'] eq $role.role_id"}
+										  				selected="selected"
+													{/if}
+												>
+												{$role.role_name}
+										  		</option>
+												{/foreach}
+											</select>
+										</div>
+										<br>
+										<br>
+										<div class="input-group">
+											<span class="input-group-addon">&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;&nbsp;态&nbsp;&nbsp;</span>
+											<select name="menu_status" class="form-control">					  						  	
+											  	<option value="1"
+											  		{if condition="$m['menu_status'] eq 1"}
+											  				selected="selected"
+														{/if}
+											  		>
+											  		开启
+											  	</option>
+											  	<option value="0"
+											  		{if condition="$m['menu_status'] eq 0"}
+											  				selected="selected"
+														{/if}
+											  		>关闭</option>
+											</select>
+										</div>
+										<br>
+										<br>
+										<div class="input-group">
+											<span class="input-group-addon">父级菜单&nbsp;</span>
+	
+											<select class="form-control" name="menu_parent">
+											  <option value ="0"></option>
+											  {foreach $menus as $me}
+										  		<option value="{$me.menu_id}"
+										  			{if condition="$m['menu_parent'] eq $me.menu_id"}
+										  				selected="selected"
+													{/if}
+													>
+													{$me.menu_name}
+										  		</option>
+										  	  {/foreach}
+											</select>
+	
+										</div>
+									</div>
+									
+									
+									
+									
+									<br>
+									<button class="btn btn-block btn-danger" type="button" onclick="menu_update()">更新</button>
+									</div>
+								
+									
+								</form>
+
+							</div>
+						</div>
+						<!--End Advanced Tables -->
+					</div>
+				</div>
+
+				<!--/.row-->
+
+				<!-- /. ROW  -->
+
+				<footer>
+					<p>Copyright &copy; 2016.Company mml All rights reserved.
+
+					</p>
+
+				</footer>
+			</div>
+			<!-- /. PAGE INNER  -->
+		</div>
+	</div>
+
+</body>
+
+{include file="Index/footer"}
+
+</html>	

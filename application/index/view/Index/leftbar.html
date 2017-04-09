@@ -1,24 +1,52 @@
-<div class="col-lg-3">
-		<div class="mycollapse">
-			<div class="mytitle btn btn-block" data-toggle="collapse" href="#content1">
-				<a>我的网盘</a>
+
+
+<div class="col-lg-2" style="background: rgba(0,0,0,0.5);padding: 0px;">
+	<?php
+		$role = session('power');
+		$user = session('user');
+		$menus =model('Menu')->getMenusByRoleId($role->role_id)
+		?>
+		
+		<div class="text-center" style="height: 50px;border-bottom: #4B7277 solid 1px;padding-top: 5px;background: #222222;">
+			<a href="/index.php/index/index"><h4>Learning Storage System</h4></a>
+		</div>
+		<div class="text-center" style="border-bottom: #4B7277 solid 1px;padding-top: 5px;">
+			<div class="container-fluid">
+				<img src="../Image/back.jpg" style="height: 120px;width: 120px;" class="img-circle"/>
 			</div>
-			<div class="mycontent collapse text-center" id="content1">
-				<ul>
-					<a href="/index.php/index/RSmanager"><li>文件</li></a>
-				</ul>
-			</div>
-			
-			<div class="mytitle btn btn-block" data-toggle="collapse" href="#content2">
-				<a>部门</a>
-			</div>
-			<div class="mycontent collapse text-center" id="content2">
-				<ul>
-					<a href=""><li>学校</li></a>
-					<a href="#"><li>学院</li></a>
-					<a href="#"><li>班级</li></a>
-				</ul>
+			<div>
+				<h4><a href="/index.php/index/user">{$user['realname']}</a></h4>
 			</div>
 		</div>
+		<div class="mycollapse">
+			{volist name="menus" id="menu"}
+				<div class="mytitle btn btn-block" data-toggle="collapse"
+					{if condition="$menu['child'] neq []"} 
+						href="#content{$menu['menu_id']}"
+						
+						{else/}
+						type="button" onclick="menujump(this)"
+						attr-url="/index.php/index/{$menu['controller']}/{$menu['function']}"
+					{/if}
+					>
+					  
+				<a>{$menu['menu_name']}</a>  
+				</div>
+				<div class="mycontent collapse text-center" id="content{$menu['menu_id']}">
+					<ul>
+						{foreach $menu['child'] as $child}
+							<a href="/index.php/index/{$child['controller']}/{$child['function']}"><li>{$child['menu_name']}</li></a>
+						{/foreach}
+					</ul>
+				</div>
+			{/volist}
+			
+		</div>
 		
-	</div>
+</div>
+	<script type="text/javascript">
+		function menujump(i){
+			var url = i.getAttribute("attr-url")
+			window.location.href=url;
+		}
+	</script>

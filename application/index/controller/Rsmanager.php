@@ -14,11 +14,9 @@ class Rsmanager extends Controller
         if(Session::has('user')){
             $user = Session::get('user');
             $root = model('Folder')->getUserRootPath($user->user_id);
+
             if(input('param.folder')){
-                $folders = model('Folder')->where(array(
-                    'parent_id' =>input('param.folder'),
-                    'user_id' => $user->user_id,
-                ))->select();
+                $folders = model('Folder')->getUserFoldersByParentId(input('param.folder'));
                 $path = Folder::getFolderPath(input('param.folder'));
                 //获取文件夹 下的文件
                 $resource = model('ResourceFolder')->getFolderResource(input('param.folder'));
@@ -26,10 +24,7 @@ class Rsmanager extends Controller
             }
             else{
                 $nowfolder = $root->folder_id;
-                $folders = model('Folder')->where(array(
-                    'parent_id' =>$root->folder_id,
-                    'user_id' => $user->user_id,
-                ))->select();
+                $folders = model('Folder')->getUserFoldersByParentId($root->folder_id);
                 $path =[];
                 //获取文件夹 下的文件
                 $resource = model('ResourceFolder')->getFolderResource($root->folder_id);

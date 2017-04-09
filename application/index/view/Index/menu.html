@@ -1,0 +1,36 @@
+<?php
+		$role = session('power');
+		$user = session('user');
+		$menus =model('Menu')->getMenusByRoleId($role->role_id)
+		?>
+<nav class="navbar-default navbar-side" role="navigation">
+	<div class="sidebar-collapse">
+		<ul class="nav" id="main-menu">
+			{volist name="menus" id="menu"}
+				
+				{if condition="$menu['child'] eq []"} 
+					<li>
+						<!--active-menu-->
+						<a class="waves-effect waves-dark" href="/index.php/index/{$menu['controller']}/{$menu['function']}"><i class="{$menu['icon']}" aria-hidden="true"></i> {$menu['menu_name']}</a>
+					</li>
+				{else/}
+					<li>
+						<a href="#" class="waves-dark"><i class="{$menu['icon']}" aria-hidden="true"></i> {$menu['menu_name']}<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							{foreach $menu['child'] as $child}
+								<li><a href="/index.php/index/{$child['controller']}/{$child['function']}">{$child['menu_name']}</a></li>
+							{/foreach}
+							
+							
+						</ul>
+					</li>
+				
+						
+				{/if}										 				
+			{/volist}
+			
+		</ul>
+
+	</div>
+
+</nav>

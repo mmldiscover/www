@@ -38,6 +38,8 @@ class Index extends Controller
                 //验证密码正确性
                 if($user->password == $password){
                     Session::set('user',$user);
+                    $power = model('Power')->getRoleByUserId($user->user_id);
+                    Session::set('power',$power);
                     return __msg(1,'Login success');
                 }
                 return __msg(0,'Password is not right');
@@ -84,7 +86,6 @@ class Index extends Controller
                 }
             }
         }
-
         return view('Index/register');
     }
 }
