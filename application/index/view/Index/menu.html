@@ -11,7 +11,7 @@
 				{if condition="$menu['child'] eq []"} 
 					<li>
 						<!--active-menu-->
-						<a class="waves-effect waves-dark" href="/index.php/index/{$menu['controller']}/{$menu['function']}"><i class="{$menu['icon']}" aria-hidden="true"></i> {$menu['menu_name']}</a>
+						<a class="{$menu['controller']|getActive}waves-effect waves-dark" href="/index.php/index/{$menu['controller']}/{$menu['function']}"><i class="{$menu['icon']}" aria-hidden="true"></i> {$menu['menu_name']}</a>
 					</li>
 				{else/}
 					<li>

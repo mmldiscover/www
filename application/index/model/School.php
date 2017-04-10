@@ -8,6 +8,4 @@ namespace app\index\model;
  */
 class School extends \think\Model
 {
-
-
 }

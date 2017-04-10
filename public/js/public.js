@@ -9,6 +9,10 @@ var SCOPE={
 	'school_update' :"/index.php/index/school/update",
 	'school_delete' :"/index.php/index/school/delete",
 	'school' :"/index.php/index/school",
+	'role_add' :"/index.php/index/role/add",
+	'role_update' :"/index.php/index/role/update",
+	'role_delete' :"/index.php/index/role/delete",
+	'role' :"/index.php/index/role",
 }
 function login(){
 	var data = $("#sign-in").serializeArray();

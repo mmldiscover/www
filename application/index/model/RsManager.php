@@ -33,6 +33,7 @@ class RsManager extends \think\Model
             'user_id' =>$data['uploader'],
             'uploadtime'=>time(),
             'size' =>$data['size'],
+            'fileicon' => getfileicon($data['type']),
         );
         $rf = new ResourceFolder();
         $res=$rf ->save($rfdata);

@@ -129,6 +129,12 @@ return [
         // 标签库标签结束标记
         'taglib_end'   => '}',
     ],
+    'http_exception_template'    =>  [
+        // 定义404错误的重定向页面地址
+        404 =>  '/index.php/index',
+        // 还可以定义其它的HTTP status
+        401 =>  APP_PATH.'401.html',
+    ],
 
     // 视图输出字符串内容替换
     'view_replace_str'       => [
@@ -228,6 +234,6 @@ return [
     'paginate'               => [
         'type'      => 'bootstrap',
         'var_page'  => 'page',
-        'list_rows' => 15,
+        'list_rows' => 7,
     ],
 ];

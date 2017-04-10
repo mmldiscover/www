@@ -87,13 +87,13 @@
 							        	{volist name="resource" id="res"}
 							        		<tr>
 								        		
-								        		<td style="text-align: left;"><span class="glyphicon glyphicon-file">&nbsp;</span> {$res.resource_name}</a></td>
+								        		<td style="text-align: left;"><a href="/index.php/index/resource/download?file={$res.rf_id}" title="下载"><span class="fa {$res.fileicon}">&nbsp;</span> {$res.resource_name}</a></td>
 								        		<td>{$res.size|transformSize}</td>
 								        		<td>{$res.uploadtime |transformTime}</td>
 								        		<td>
 								        			<a href="/index.php/index/resource/download?file={$res.rf_id}" title="下载"><span class="glyphicon glyphicon-download"></span></a>
 								        		
-								        			<a href="/index.php/index/resource/share?id={$res.resource_id}" title="分享"><span class="glyphicon glyphicon-send"></span></a>
+								        			<a href="/index.php/index/resource/share?id={$res.resource_id}" title="分享"><span class="fa fa-share-alt"></span></a>
 								        		</td>
 							        		</tr>
 							        	{/volist}

@@ -66,8 +66,9 @@
 							        		<td>{$school.school_status|getStatus}</td>
 							        		
 							        		<td>
-							        			<a href="javascript:void()" onclick="school_delete({$school.school_id})" title="删除"><span class="glyphicon glyphicon-trash"></span></a>
+							        			<a href="/index.php/index/school/detail/id={$school.school_id}" title="查看"><span class="glyphicon glyphicon-eye-open"></span></a>
 							        			<a href="/index.php/index/school/edit?id={$school.school_id}" title="编辑"><span class="glyphicon glyphicon-edit"></span></a>
+							        			<a href="javascript:void()" onclick="school_delete({$school.school_id})" title="删除"><span class="glyphicon glyphicon-trash"></span></a>
 							        		</td>
 							        	</tr>
 							        	{/foreach}

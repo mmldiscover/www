@@ -88,4 +88,7 @@ class Index extends Controller
         }
         return view('Index/register');
     }
+    function test(){
+        return view();
+    }
 }

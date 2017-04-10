@@ -8,7 +8,7 @@ use think\Session;
 class Menu extends Controller
 {
     function index(){
-        $menus = model('Menu')->where('menu_status',1)->paginate(3);
+        $menus = model('Menu')->where('menu_status',1)->paginate();
         // 把分页数据赋值给模板变量list
         $this->assign('allmenu',$menus);
         return view();

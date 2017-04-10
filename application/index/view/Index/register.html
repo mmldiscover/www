@@ -1,54 +1,111 @@
 {include file="Index/head"}
 
+<!-- font files  -->
+<style type="text/css">
+	.navbar-header button{
+		display: none;
+	}
+	.navbar-header #sideNav{
+		display: none;
+	}
+	.form-head{
+		background: rgba(0,0,0,0.2);
+		border: none; 
+		border-bottom: solid rgba(255,255,255,0.6) 1px;
+		height: 50px;
+		font-size: 28px;
+		color: white;
+		padding-left: 50px;	
+		padding-top: 5px;
+	}
+	.panel-body span{
+		background: rgba(0,0,0,0);
+		color: white;
+	}
+	.panel-body input{
+		border: solid rgba(255,255,255,1) 1px;
+		color: white;
+		border-radius: 5px;
+	}
+	.col-lg-4{
+		margin-top: 50px;border: solid rgba(255,255,255,0.6) 1px;
+		padding: 0px;
+		background: rgba(0,0,0,0.4);
+		border-radius: 5px;
+	}
+</style>
 </head>
 <body>
-<div style="position: fixed;border: 0px;width: 100%;height: 100%;background: url(../Image/back.jpg);background-size:100% 100%;"></div>
-{include file="Index/nav"}
-
-
-<div class="container container-fluid">
-	<div class="col-lg-2">
-		<br>
-		<br>
-		<br>
-		<br>
-		<button class="btn btn-block btn-success" onclick="window.location.href='/index.php/index/index/login'">Login</button>
-		<button class="btn btn-block btn-warning" onclick="window.location.href='/index.php/index/index/register'">Register</button>
-	</div>
-	
-	<div class="col-lg-5">
-		<div class="panel panel-danger">
-			<div class="panel-heading">
-				Register
-			</div>
-			<br>
-			<div class="panel-body">
-				<form method="post" id="sign-up">
-					<div class="input-group">
-					  <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-					  <input type="text" class="form-control" placeholder="Account" name="account">
+	<div style="position: fixed;border: 0px;width: 100%;height: 100%;background: url(../Image/banner.jpg);background-size:100% 100%;"></div>
+	<div id="wrapper">
+		{include file="Index/nav"}
+		<div id="page-wrapper" style="margin-left: 0px;min-height: 0px;background: rgba(0,0,0,0);">
+			<div class="container-fluid">
+				<div class="col-lg-4 col-lg-push-7">
+					<div class="form-head">
+						Sign Up
 					</div>
-					<br>
-					<div class="input-group">
-					  <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-					  <input type="password" class="form-control" placeholder="Password" name="password">
+					<br />
+					<div class="panel-body">
+						<form method="post" id="sign-up">
+								<div class="input-group">
+								  <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+								  <input type="text" class="form-control" placeholder="Account" name="account">
+								</div>
+								<br>
+								<div class="input-group">
+								  <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+								  <input type="password" class="form-control" placeholder="Password" name="password">
+								</div>
+								<br>
+								<div class="input-group">
+								  <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+								  <input type="password" class="form-control" placeholder="Confirm Password" name="password1">
+								</div>
+								<br>
+								<button class="btn btn-block btn-warning" type="button"  onclick="register()">Sigh Up</button>
+								<br />
+								<button class="btn btn-block btn-success" type="button" attr-url="/index.php/index/index/login"onclick="jump(this)">Sigh In</button>
+								
+								
+							</form>
 					</div>
-					<br>
-					<div class="input-group">
-					  <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-					  <input type="password" class="form-control" placeholder="Confirm Password" name="password1">
-					</div>
-					<br>
-					<button class="btn btn-block btn-warning" type="button" onclick="register()">Sigh Up</button>
-				</form>
+					
+				</div>
 			</div>
 		</div>
-		
 	</div>
-</div>
-</body>
-	
- 	{include file="Index/footer"}
- 
 
+
+
+<!--<div class="log">
+	<div class="content1">
+		<h2>Sign In</h2>
+		<form method="post" id="sign-in">
+			<input type="text" name="account" placeholder="Account">
+			<input type="password" name="password" placeholder="Password">
+			<div class="button-row">
+				<input type="button" onclick="login()" class="sign-in" value="Sign In">
+				<input type="reset" class="reset" value="Reset">
+				<div class="clear"></div>
+			</div>
+		</form>
+	</div>
+	<div class="content2">
+		<h2>Sign Up</h2>
+		<form>
+			<input type="text" name="account" placeholder="Account">
+		
+			<input type="password" name="password" placeholder="Password">
+			<input type="password" name="password1" placeholder="Confirm Password">
+			<input type="button" onclick="register()" class="register" value="Sign Up">
+		</form>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="footer">
+	<p>Copyright &copy; 2016.Company mml All rights reserved.</p>
+</div>-->
+{include file="Index/footer"}
+</body>
 </html>

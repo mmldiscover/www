@@ -1,0 +1,116 @@
+{include file="Index/head"}
+
+</head>
+
+<body>
+	<!--<div style="position: fixed;border: 0px;width: 100%;height: 100%;background: url(../Image/back4.jpg);background-size:100% 100%;"></div>-->
+
+	<div id="wrapper">
+		{include file="Index/nav"}
+		<!--	MENU-BEGIN-->
+		{include file="Index/menu"}
+		<!--	MENU-END-->
+
+		<div id="page-wrapper">
+			<div class="header">
+				<h1 class="page-header">
+                           	 学校管理<small> / 编辑</small>
+             	</h1>
+				<ol class="breadcrumb">
+					<li>
+						<a href="javascrip:void()">Home</a>
+					</li>
+					<li>
+						<a href="/index.php/index/menu">School</a>
+					</li>
+					<li>
+						<a class="active">Edit</a>
+					</li>
+
+				</ol>
+
+			</div>
+			<div id="page-inner">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Advanced Tables -->
+						<div class="card">
+							<!--<div class="card-action">
+                             	添加菜单
+                        	</div>-->
+							<div class="card-content">
+								<form method="post" id="form">
+									<div class="col-lg-6">
+										<div class="input-field">
+											<input class="hidden" name="school_id" value="{$school.school_id}" />
+									        <input type="text" class="validate" name="school_name" value="{$school.school_name}">
+									        <label for="last_name">School Name</label>
+									    </div>
+										<div class="input-field">
+									          <input type="text" class="validate" name="school_address" value="{$school.school_address}">
+									          <label for="last_name">School Address</label>
+									    </div>										
+									</div>
+									<div class="col-lg-6">
+										<br>
+										<div class="input-group">
+											<span class="input-group-addon">&nbsp;&nbsp;区&nbsp;&nbsp;&nbsp;&nbsp;域&nbsp;&nbsp;</span>
+											<select name="province_id" class="form-control">
+												{foreach $provinces as $province}
+												<option value="{$province.province_id}" {if condition="$school.province_id eq $province.province_id"}selected="selected"{/if}>{$province.province_name}</option>
+												{/foreach}
+											</select>
+										</div>
+										<br>
+										<br>
+										<div class="input-group">
+											<span class="input-group-addon">&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;&nbsp;态&nbsp;&nbsp;</span>
+											<select name="school_status" class="form-control">
+												<option value="1" {if condition="$school.school_status eq 1"}selected="selected"{/if}>开启</option>
+												<option value="0" {if condition="$school.school_status eq 0"}selected="selected"{/if}>关闭</option>
+											</select>
+										</div>
+										
+										
+										
+									</div>
+									
+									
+									
+									
+									<br>
+									<button class="btn btn-block btn-danger" type="button" onclick="school_update()">更新</button>
+									</div>
+								
+									
+								</form>
+
+							</div>
+						</div>
+						<!--End Advanced Tables -->
+					</div>
+				</div>
+
+				<!--/.row-->
+
+				<!-- /. ROW  -->
+
+				<footer>
+					<p>Copyright &copy; 2016.Company mml All rights reserved.
+
+					</p>
+
+				</footer>
+			</div>
+			<!-- /. PAGE INNER  -->
+		</div>
+	</div>
+
+</body>
+
+{include file="Index/footer"}
+
+<script type="text/javascript">
+	
+</script>
+</html>
