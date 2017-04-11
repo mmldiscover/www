@@ -1,0 +1,18 @@
+var SCOPE={
+	'login':"/index.php/index/index/login",
+	'register':"/index.php/index/index/register",
+	'login_success':"/",
+	'user_edit' :"/index.php/index/user/update",
+	'menu_add' :"/index.php/index/menu/add",
+	'menu_update' :"/index.php/index/menu/update",
+	'menu':"/index.php/index/menu",
+	'school_add' :"/index.php/index/school/add",
+	'school_update' :"/index.php/index/school/update",
+	'school_delete' :"/index.php/index/school/delete",
+	'school' :"/index.php/index/school",
+	'role_add' :"/index.php/index/role/add",
+	'role_update' :"/index.php/index/role/update",
+	'role_delete' :"/index.php/index/role/delete",
+	'role' :"/index.php/index/role",
+	'rsmanager':"/index.php/index/Rsmanager",
+}

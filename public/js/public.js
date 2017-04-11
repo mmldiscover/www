@@ -1,19 +1,4 @@
-var SCOPE={
-	'login':"/index.php/index/index/login",
-	'register':"/index.php/index/index/register",
-	'login_success':"/",
-	'user_edit' :"/index.php/index/user/update",
-	'menu_add' :"/index.php/index/menu/add",
-	'menu_update' :"/index.php/index/menu/update",
-	'school_add' :"/index.php/index/school/add",
-	'school_update' :"/index.php/index/school/update",
-	'school_delete' :"/index.php/index/school/delete",
-	'school' :"/index.php/index/school",
-	'role_add' :"/index.php/index/role/add",
-	'role_update' :"/index.php/index/role/update",
-	'role_delete' :"/index.php/index/role/delete",
-	'role' :"/index.php/index/role",
-}
+
 function login(){
 	var data = $("#sign-in").serializeArray();
     var postData = {};
@@ -111,59 +96,61 @@ function jump(i){
 }
 
 
-var send={
-	jump_send:function(id,url,jump){
-		var data = $(id).serializeArray();
-	    var postData = {};
-	    $(data).each(function(i){
-	    postData[this.name] = this.value;
-	    });
-		$.post(url,postData,function(result){
-		    
-		    if(result.status==1){
-		    	window.location.href=jump;
-		    }
-		    else{
-		    	alert(result.info);
-		    }
-	    },"JSON");
-	},
-	reload_send:function(id,url){
-		var data = $(id).serializeArray();
-	    var postData = {};
-	    $(data).each(function(i){
-	    postData[this.name] = this.value;
-	    });
-		$.post(url,postData,function(result){
-		    
-		    if(result.status==1){
-		    	window.location.href=jump;
-		    }
-		    else{
-		    	alert(result.info);
-		    }
-	    },"JSON");
-	},
-	reload_data_send:function(data,url){
-		$.post(url,data,function(result){
-		    
-		    if(result.status==1){
-		    	location.reload();
-		    }
-		    else{
-		    	alert(result.info);
-		    }
-	    },"JSON");
-	}
-}
 
-function school_add(){
-	send.jump_send("#form",SCOPE.school_add,SCOPE.school);
-}
-function school_update(){
-	send.jump_send("#form",SCOPE.school_update,SCOPE.school);
-}
-function school_delete(i){
-	var postData = {'id':i};
-	send.reload_data_send(postData,SCOPE.school_delete);
-}
+			var f = true;
+			var str_1 = "<span class=\"glyphicon glyphicon-upload\"></span> 上传文件"
+			var str_2 = "<span class=\"glyphicon glyphicon-home\"></span> 返回网盘"
+
+			function mytab(i) {
+				if(f) {
+					$(i).html(str_2);
+					$('.mytable').fadeToggle(300);
+					$('.myform').delay(200).fadeToggle(200);
+					f = false;
+
+				} else {
+					$(i).html(str_1);
+					$('.myform').fadeToggle(300);
+					$('.mytable').delay(200).fadeToggle(200);
+					f = true;
+					location.reload();
+
+				}
+
+			}
+
+			function deletefolder(id) {
+				url = "/index.php/index/folder/delete";
+				var postData = {};
+				postData['id'] = id;
+				$.post(url, postData, function(result) {
+					if(result.status == 1) {
+						$("#content").load(SCOPE.rsmanager+" #page-wrapper");
+					}
+				}, "JSON");
+			}
+
+			function newfolder(id) {
+				var str = "<tr><td><input type=\"checkbox\"/> </td><td><span class=\"glyphicon glyphicon-folder-open\" style=\"float: left;padding-right: 10px;margin-top: 10px;\"></span><input class=\"form-control newfolder\" style=\"width:50%;\" value=\"新建文件夹\"/></td><td>--</td><td>--</td><td></td></tr>";
+				//		$('.mytable').before(str);
+				$('#newfolder').show();
+				$('.newfolder').value = "新建文件夹";
+				$('.newfolder').focus();
+				$('.newfolder').select();
+			}
+			function folder_add(i,id) {
+				url = "/index.php/index/folder/add";
+				var postData = {};
+				postData['id'] = id;
+				postData['name'] = $(i).val();
+
+				$.post(url, postData, function(result) {
+
+					if(result.status == 1) {
+						$("#content").load(SCOPE.rsmanager+" #page-wrapper");
+					} else {
+						alert(result.info);
+					}
+				}, "JSON");
+			}
+	

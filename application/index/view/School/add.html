@@ -1,115 +1,82 @@
-{include file="Index/head"}
+<!--	MENU-END-->
 
-</head>
-
-<body>
-	<!--<div style="position: fixed;border: 0px;width: 100%;height: 100%;background: url(../Image/back4.jpg);background-size:100% 100%;"></div>-->
-
-	<div id="wrapper">
-		{include file="Index/nav"}
-		<!--	MENU-BEGIN-->
-		{include file="Index/menu"}
-		<!--	MENU-END-->
-
-		<div id="page-wrapper">
-			<div class="header">
-				<h1 class="page-header">
+<div id="page-wrapper">
+	<div class="header">
+		<h1 class="page-header">
                            	 学校管理<small> / 添加</small>
              	</h1>
-				<ol class="breadcrumb">
-					<li>
-						<a href="javascrip:void()">Home</a>
-					</li>
-					<li>
-						<a href="/index.php/index/menu">School</a>
-					</li>
-					<li>
-						<a class="active">Add</a>
-					</li>
+		<ol class="breadcrumb">
+			<li>
+				<a href="javascrip:void()">Home</a>
+			</li>
+			<li>
+				<a href="/index.php/index/menu">School</a>
+			</li>
+			<li>
+				<a class="active">Add</a>
+			</li>
 
-				</ol>
+		</ol>
 
-			</div>
-			<div id="page-inner">
-				<div class="row">
-					<div class="col-md-12">
-						<!-- Advanced Tables -->
-						<div class="card">
-							<!--<div class="card-action">
+	</div>
+	<div id="page-inner">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Advanced Tables -->
+				<div class="card">
+					<!--<div class="card-action">
                              	添加菜单
                         	</div>-->
-							<div class="card-content">
-								<form method="post" id="form">
-									<div class="col-lg-6">
-										<div class="input-field">
-									        <input type="text" class="validate" name="school_name">
-									        <label for="last_name">School Name</label>
-									    </div>
-										<div class="input-field">
-									          <input type="text" class="validate" name="school_address">
-									          <label for="last_name">School Address</label>
-									    </div>										
-									</div>
-									<div class="col-lg-6">
-										<br>
-										<div class="input-group">
-											<span class="input-group-addon">&nbsp;&nbsp;区&nbsp;&nbsp;&nbsp;&nbsp;域&nbsp;&nbsp;</span>
-											<select name="province_id" class="form-control">
-												{foreach $provinces as $province}
-												<option value="{$province.province_id}">{$province.province_name}</option>
-												{/foreach}
-											</select>
-										</div>
-										<br>
-										<br>
-										<div class="input-group">
-											<span class="input-group-addon">&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;&nbsp;态&nbsp;&nbsp;</span>
-											<select name="school_status" class="form-control">
-												<option value="1">开启</option>
-												<option value="0">关闭</option>
-											</select>
-										</div>
-										
-										
-										
-									</div>
-									
-									
-									
-									
-									<br>
-									<button class="btn btn-block btn-warning" type="button" onclick="school_add()">添加</button>
-									</div>
-								
-									
-								</form>
+					<div class="card-content">
+						<form method="post" id="form">
+							<div class="col-lg-6">
+								<div class="input-field">
+									<input type="text" class="validate" name="school_name">
+									<label for="last_name">School Name</label>
+								</div>
+								<div class="input-field">
+									<input type="text" class="validate" name="school_address">
+									<label for="last_name">School Address</label>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<br>
+								<div class="input-group">
+									<span class="input-group-addon">&nbsp;&nbsp;区&nbsp;&nbsp;&nbsp;&nbsp;域&nbsp;&nbsp;</span>
+									<select name="province_id" class="form-control">
+										{foreach $provinces as $province}
+										<option value="{$province.province_id}">{$province.province_name}</option>
+										{/foreach}
+									</select>
+								</div>
+								<br>
+								<br>
+								<div class="input-group">
+									<span class="input-group-addon">&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;&nbsp;态&nbsp;&nbsp;</span>
+									<select name="school_status" class="form-control">
+										<option value="1">开启</option>
+										<option value="0">关闭</option>
+									</select>
+								</div>
 
 							</div>
-						</div>
-						<!--End Advanced Tables -->
+
+							<br>
+							<button class="btn btn-block btn-warning" type="button" onclick="school_add()">添加</button>
 					</div>
+
+					</form>
+
 				</div>
-
-				<!--/.row-->
-
-				<!-- /. ROW  -->
-
-				<footer>
-					<p>Copyright &copy; 2016.Company mml All rights reserved.
-
-					</p>
-
-				</footer>
 			</div>
-			<!-- /. PAGE INNER  -->
+			<!--End Advanced Tables -->
 		</div>
 	</div>
 
-</body>
+	<!--/.row-->
 
-{include file="Index/footer"}
+	<!-- /. ROW  -->
 
-<script type="text/javascript">
 	
-</script>
-</html>
+</div>
+<!-- /. PAGE INNER  -->

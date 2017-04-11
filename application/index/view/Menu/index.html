@@ -1,115 +1,86 @@
-{include file="Index/head"}
+<!--	MENU-END-->
 
-</head>
-
-<body>
-	<!--<div style="position: fixed;border: 0px;width: 100%;height: 100%;background: url(../Image/back4.jpg);background-size:100% 100%;"></div>-->
-
-	<div id="wrapper">
-		{include file="Index/nav"}
-		<!--	MENU-BEGIN-->
-		{include file="Index/menu"}
-		<!--	MENU-END-->
-
-		<div id="page-wrapper">
-			<div class="header">
-				<h1 class="page-header">
+<div id="page-wrapper">
+	<div class="header">
+		<h1 class="page-header">
                            	 菜单管理
                 </h1>
-				<ol class="breadcrumb">
-					<li><a href="javascrip:void()">Home</a></li>
-					<li>					
-						<a class="active">Menu</a>
-					</li>
+		<ol class="breadcrumb">
+			<li>
+				<a href="javascrip:void()">Home</a>
+			</li>
+			<li>
+				<a class="active">Menu</a>
+			</li>
 
-				</ol>
+		</ol>
 
-			</div>
-			<div id="page-inner">
-				<div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="card">
-                        <!--<div class="card-action">
+	</div>
+	<div id="page-inner">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Advanced Tables -->
+				<div class="card">
+					<!--<div class="card-action">
                              Advanced Tables
                         </div>-->
-                        <div class="card-content">
-                            <div class="table-responsive" style="overflow-x: hidden;">
-                            	<div class="row">
-									<div class="col-sm-6">
-										<button attr-url="/index.php/index/menu/add" class="btn btn-sm btn-success" onclick="jump(this)"><span class="glyphicon glyphicon-plus"></span> 添加菜单</button>
-									</div>
-									<div class="col-sm-6">
-										
-									</div>
-										
+					<div class="card-content">
+						<div class="table-responsive" style="overflow-x: hidden;">
+							<div class="row">
+								<div class="col-sm-6">
+									<button attr-url="/index.php/index/menu/add" class="btn btn-sm btn-success" onclick="jump(this)"><span class="glyphicon glyphicon-plus"></span> 添加菜单</button>
 								</div>
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-							        		
-							        		<th>菜单名</th>
-							        		<th>控制器</th>
-							        		<th>方法名</th>
-							        		<th>父菜单</th>
-							        		<th>权限</th>
-							        		<th>图标</th>
-							        		<th>操作</th>
-							        	</tr>
-                                    </thead>
-                                    <tbody>
-                                        {foreach $allmenu as $menu}
-							        	<tr>
-							        		
-							        		<td>{$menu['menu_name']}</a></td>
-							        		<td>{$menu['controller']}</td>
-							        		<td>{$menu['function']}</td>
-							        		<td>{$menu['menu_parent'] |getMenuName}</td>
-							        		<td>{$menu['role_id'] |getRoleName}</td>
-							        		<td><i class="{$menu['icon']}">  </i>  {$menu['icon']}</td>
-							        		<td>
-							        			<a href="javascript:void()" onclick="deletemenu({$menu.menu_id})" title="删除"><span class="glyphicon glyphicon-trash"></span></a>
-							        			<a href="/index.php/index/menu/edit?id={$menu.menu_id}" title="编辑"><span class="glyphicon glyphicon-edit"></span></a>
-							        		</td>
-							        	</tr>
-							        	{/foreach}
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                                                              
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div style="text-align: center;width: 100%;">{$allmenu->render()}</div>
-                            
-                        </div>
-                    </div>
-                    <!--End Advanced Tables -->
-                </div>
-            </div>
-				
-				
-				<!--/.row-->
+								<div class="col-sm-6">
 
-				<!-- /. ROW  -->
+								</div>
 
-				<footer>
-					<p>Copyright &copy; 2016.Company mml All rights reserved.
+							</div>
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
 
-					</p>
+										<th>菜单名</th>
+										<th>控制器</th>
+										<th>方法名</th>
+										<th>父菜单</th>
+										<th>权限</th>
+										<th>图标</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									{foreach $allmenu as $menu}
+									<tr>
 
-				</footer>
+										<td>{$menu['menu_name']}</a>
+										</td>
+										<td>{$menu['controller']}</td>
+										<td>{$menu['function']}</td>
+										<td>{$menu['menu_parent'] |getMenuName}</td>
+										<td>{$menu['role_id'] |getRoleName}</td>
+										<td><i class="{$menu['icon']}">  </i> {$menu['icon']}</td>
+										<td>
+											<a href="javascript:void()" onclick="deletemenu({$menu.menu_id})" title="删除"><span class="glyphicon glyphicon-trash"></span></a>
+											<a attr-url="/index.php/index/menu/edit?id={$menu.menu_id}" title="编辑" onclick="mml.jump_ajax(this)"><span class="glyphicon glyphicon-edit"></span></a>
+										</td>
+									</tr>
+									{/foreach}
+
+								</tbody>
+							</table>
+						</div>
+						<div style="text-align: center;width: 100%;">{$allmenu->render()}</div>
+
+					</div>
+				</div>
+				<!--End Advanced Tables -->
 			</div>
-			<!-- /. PAGE INNER  -->
 		</div>
+
+		<!--/.row-->
+
+		<!-- /. ROW  -->
+
 	</div>
-
-</body>
-
-{include file="Index/footer"}
-
-</html>
+	<!-- /. PAGE INNER  -->
+</div>

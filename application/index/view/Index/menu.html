@@ -11,14 +11,15 @@
 				{if condition="$menu['child'] eq []"} 
 					<li>
 						<!--active-menu-->
-						<a class="{$menu['controller']|getActive}waves-effect waves-dark" href="/index.php/index/{$menu['controller']}/{$menu['function']}"><i class="{$menu['icon']}" aria-hidden="true"></i> {$menu['menu_name']}</a>
+						<!--<a class="{$menu['controller']|getActive}waves-effect waves-dark" href="/index.php/index/{$menu['controller']}/{$menu['function']}"><i class="{$menu['icon']}" aria-hidden="true"></i> {$menu['menu_name']}</a>-->
+					<a href="javascript:void(0)" attr-url="/index.php/index/{$menu['controller']}/{$menu['function']}" onclick="mml.menu_ajax(this)"><i class="{$menu['icon']}" aria-hidden="true"></i> {$menu['menu_name']}</a>	
 					</li>
 				{else/}
 					<li>
 						<a href="#" class="waves-dark"><i class="{$menu['icon']}" aria-hidden="true"></i> {$menu['menu_name']}<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							{foreach $menu['child'] as $child}
-								<li><a href="/index.php/index/{$child['controller']}/{$child['function']}">{$child['menu_name']}</a></li>
+								<li><a attr-url="/index.php/index/{$child['controller']}/{$child['function']}" onclick="mml.menu_ajax(this)">{$child['menu_name']}</a></li>
 							{/foreach}
 							
 							
